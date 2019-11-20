@@ -30,7 +30,7 @@ class login_page extends React.Component{
 
     render() {
         return(
-        <div>
+        <div className={'screen'}>
             <div className={'navbar_default'} >
                 <div className={'navbar_shadow'}>
 
@@ -45,19 +45,19 @@ class login_page extends React.Component{
                 </div>
             </div>
             <div className={"container_div"}>
-                <Container className={'tira_margin'}>
+                {/* <Container> */}
                     <Row>
                         <Col className={'container_left'}>
                             <img src={require('../img/green1.jpg')} width="100%" height='100%'></img>
                         </Col>
-                        <Col>
-                        <Form className={'container'}>
-                            <Form.Group controlId="formBasicEmail" className={'top_space'}>
+                        <Col className={'container_right'}>
+                        <Form>
+                            <Form.Group controlId="formBasicEmail" className={'form_align'}>
                                 <Form.Label className={'text_color_dark'}>Email address</Form.Label>
                                 <Form.Control type="email" placeholder="Enter email"/>
                             </Form.Group>
                         
-                            <Form.Group controlId="formBasicPassword" className={'top_space'}>
+                            <Form.Group controlId="formBasicPassword" className={'form_align'}>
                                 <Form.Label className={'text_color_dark'}>Password</Form.Label>
                                     <Form.Control type="password" placeholder="Password" />
                             </Form.Group>
@@ -80,7 +80,7 @@ class login_page extends React.Component{
                         </Form>
                         </Col>
                     </Row>
-                </Container>
+                {/* </Container> */}
             </div>
             <div className={'footer_shadow'}>
             <footer class="app-footer" className={'footer_style'}>
