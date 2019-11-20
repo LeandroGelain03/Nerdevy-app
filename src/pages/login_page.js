@@ -46,7 +46,7 @@ class login_page extends React.Component{
             </div>
             <div className={"container_div"}>
                 {/* <Container> */}
-                    <Row>
+                    <Row className={'screen'}>
                         <Col className={'container_left'}>
                             <img src={require('../img/green1.jpg')} width="100%" height='100%'></img>
                         </Col>
