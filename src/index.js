@@ -12,11 +12,10 @@ ReactDOM.render(
     <BrowserRouter>
         <Switch>
             <Route path="/" exact component={LoginPage} />
-            <Route path="/signup" component={SignUpPage} />
+            <Route path="/signup/" component={SignUpPage} />
         </Switch>
     </ BrowserRouter>
     , document.getElementById('root')
 );
-
 
 serviceWorker.unregister();

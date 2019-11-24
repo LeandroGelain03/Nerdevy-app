@@ -1,15 +1,197 @@
 import React, { Component } from 'react';
-import '../styles/signUpPage.css';
+import { Form, Col, Button } from 'react-bootstrap';
+import { LinkContainer } from 'react-router-bootstrap';
 import NavBarComponent from '../components/navBar';
 import FooterComponent from '../components/footer';
-
+import CalendarComponent from '../components/calendar';
+import '../styles/signUpPage.css';
+import axios from 'axios';
 class signUpPage extends Component {
+    
+    constructor(props){
+        super(props);
+        this.state = {
+            first_name: '',
+            last_name:'',
+            email:'',
+            username:'',
+            category:'',
+            instituition:'',
+            date_birth:'',
+            city:'',
+            state:'',
+            county:'',
+            pwd:'',
+            pwd_confirm:'',
+            
+        };
+        this.handleChange = this.handleChange.bind(this);
+    };    
+    handleChange(event) {
+        let data = {};
+        data[event.target.name] = event.target.value;
+        this.setState(data);
+    };
+
+    handleSubmit = event => {
+        event.preventDefault();
+
+        const user = {
+           
+        }
+        console.log(CalendarComponent.state)
+        axios.post('http://localhost:4000/user/signup', 
+            {  email:this.state.email,
+                username:this.state.username,
+                first_name: this.state.first_name,
+                last_name:this.state.last_name,
+                pwd:this.state.pwd,
+                category:this.state.category,
+                institution:this.state.instituition,
+                age:this.state.date_birth,
+                city:this.state.city,
+                state:this.state.state,
+                country:this.state.country, })
+        .then (res => {
+            console.log(res);
+            console.log(res.data)
+
+        })
+        .catch(error => {
+            console.log(error.response)
+        })
+        console.log(user)
+    }
+
     render() {
+        let minOffset = 0, maxOffset = 10;
+        let thisYear = (new Date()).getFullYear();
+        let allYears = [];
+        for(let x = 0; x <= maxOffset; x++) {
+            allYears.push(thisYear - x)
+        }
+    
+        const yearList = allYears.map((x) => {return(<option key={x}>{x}</option>)});
+        
         return (
             <div className={'screen'}>
                 <NavBarComponent/>
                 <div className={'body_style'}>
-                    Form Sign Up
+                <div className={'text_init'}>
+                    <h1 className={'text_color_dark'}>
+                        Novo por aqui?
+                    </h1>
+                    <h5 className='text_color_dark'>Venha fazer parte da nossa comunidade e cresça junto conosco!!</h5>
+                </div>
+                    <div className={'Form_style'}>
+                        <Form>
+                            <Form.Row>
+                                <Col>
+                                    <Form.Group  className={'space_between_FN'}>
+                                        <Form.Label className={'text_color_dark'}>Primeiro nome</Form.Label>
+                                        <Form.Control onChange={this.handleChange} placeholder='Primeiro nome' name='first_name'></Form.Control>
+                                    </Form.Group>
+                                </Col>
+                               
+                                <Col>
+                                    <Form.Group className={'space_between_LN'}>
+                                        <Form.Label className={'text_color_dark'}>Sobrenome</Form.Label>
+                                        <Form.Control onChange={this.handleChange} placeholder='Sobrenome' name='last_name'></Form.Control>
+                                    </Form.Group>
+                                </Col>
+                            </Form.Row>
+                            <Form.Row>
+                                <Col>
+                                    <Form.Group className={'space_between_FN'}>
+                                        <Form.Label className={'text_color_dark'}>Cidade</Form.Label>
+                                        <Form.Control onChange={this.handleChange} placeholder='Sua cidade' name='city'></Form.Control>
+                                    </Form.Group>
+                                </Col>
+                               
+                                <Col>
+                                    <Form.Group className={'space_between_LN'}>
+                                        <Form.Label className={'text_color_dark'}>Estado (região)</Form.Label>
+                                        <Form.Control onChange={this.handleChange} placeholder='Estado' name='state'></Form.Control>
+                                    </Form.Group>
+                                </Col>
+                                <Col>
+                                    <Form.Group className={'space_between_LN'}>
+                                        <Form.Label className={'text_color_dark'}>País</Form.Label>
+                                        <Form.Control onChange={this.handleChange} placeholder='País' name='country'></Form.Control>
+                                    </Form.Group>
+                                </Col>
+                            </Form.Row>
+                                <Form.Group>
+                                    <Form.Label className={'text_color_dark'}>Email address</Form.Label>
+                                    <Form.Control onChange={this.handleChange} type="email" placeholder="Enter email" name="email"/>
+                                </Form.Group>
+                            <Form.Row>
+                                <Col>
+                                    <Form.Group className={'space_between_FN'}>
+                                        <Form.Label className={'text_color_dark'}>Username</Form.Label>
+                                        <Form.Control onChange={this.handleChange} type='text' placeholder='Username' name='username'></Form.Control>
+                                    </Form.Group>
+                                </Col>
+                               
+                                <Col>
+                                    <Form.Group className={'space_between_LN'}>
+                                        <Form.Label className={'text_color_dark'}>Categoria</Form.Label>
+                                        <Form.Control as='select' onChange={this.handleChange} name='category'>
+                                            <option> Escolha... </option>
+                                            <option> Estudante </option>
+                                            <option> Estudante - Empregado </option>
+                                            <option> Estudante em busca de emprego </option>
+                                            <option> Programador Junior </option>
+                                            <option> Programador Pleno </option>
+                                            <option> Programador Sênior </option>
+                                            <option> Professor - Mestre </option>
+                                            <option> Professor - Doutor </option>
+                                        </Form.Control>
+                                    </Form.Group>
+                                </Col>
+                                <Col className={'calendar_container'}>
+                                    <div className={'calendar_style'}>
+                                        <Form.Group>
+                                            <Form.Label className={'text_color_dark'}>Data de Nascimento</Form.Label><br/>
+                                            <Form.Control as='select' onChange={this.handleChange} name='date_birth'>
+                                                <option>12</option>
+                                            </Form.Control>
+                                        </Form.Group>
+                                    </div>
+                                </Col>
+                            </Form.Row>
+                            <Form.Row>
+                                <Col>
+                                    <Form.Group>
+                                        <Form.Label className={'text_color_dark'}>Instuição que pertence</Form.Label>
+                                        <Form.Control onChange={this.handleChange} placeholder="Nome da faculdade ou empresa que frequenta" name='instituition'></Form.Control>
+                                    </Form.Group>
+                                </Col>
+                            </Form.Row>
+                            <Form.Row>
+                                <Col>
+                                    <Form.Group className={'space_between_FN'}>
+                                        <Form.Label className={'text_color_dark'}>Senha</Form.Label>
+                                        <Form.Control onChange={this.handleChange} type='password' placeholder='Senha' name='pwd'></Form.Control>
+                                    </Form.Group>
+                                </Col>
+                               
+                                <Col>
+                                    <Form.Group className={'space_between_LN'}>
+                                        <Form.Label className={'text_color_dark'}>Confirme a senha</Form.Label>
+                                        <Form.Control onChange={this.handleChange} type='password' placeholder='Confirmação de senha' name='pwd_confirm'></Form.Control>
+                                    </Form.Group>
+                                </Col>
+                            </Form.Row>
+                            <div className={'btn_signUp'}>
+                                <LinkContainer to='/'>
+                                    <Button variant="light" type='submit' onClick={this.handleSubmit}>
+                                        Cadastre!
+                                    </Button>
+                                </LinkContainer>
+                            </div>
+                        </Form>
+                    </div>
                 </div>
                 <FooterComponent/>
             </div>

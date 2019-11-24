@@ -16,16 +16,19 @@ class loginPage extends Component{
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleChange = this.handleChange.bind(this);
     }
+    
     handleChange(event) {
         let data = {};
         data[event.target.name] = event.target.value;
         this.setState(data);
         console.log(this.state)
     }
+    
     handleSubmit(event) {
         event.preventDefault();
         
     }
+
     render() {
         return(
         <div className={'screen'}>
@@ -55,10 +58,15 @@ class loginPage extends Component{
                                         </Button>
                                     </Col>
                                     <Col className={'col_right'}>
-                                        <LinkContainer to='/signup'>
-                                            <Button variant="light" type='button' onClick={this.signup}>
-                                                Cadastro
-                                            </Button>
+                                        <div className='text_signup'>
+                                            <p>
+                                                Ainda não tem uma conta?
+                                            </p>
+                                        </div>
+                                        <LinkContainer to='signup/'>
+                                        <Button variant="light" type='button' onClick={this.signup}>
+                                            Cadastro
+                                        </Button>
                                         </LinkContainer>
                                     </Col>
                                 </Row>

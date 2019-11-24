@@ -13,8 +13,12 @@
 .text_color_dark{
     color: #FFFFFF;
 }
+.text_signup{
+    color: #FFFFFF;
+    padding-top: 3%;
+}
 .top_space2{
-    padding-top: 20%;
+    padding-top: 13%;
 }
 .container_right{
     width: 100%;
@@ -29,6 +33,7 @@
 }
 .col_left {
     margin-left: 1vw;
+    align-self: flex-end;
 }
 .col_right {
     margin-right: 1vw;
