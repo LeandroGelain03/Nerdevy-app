@@ -14,6 +14,7 @@ export default class CalendarComponent extends Component{
         this.setState({
             date: date,
         });
+        return this.state
     };
     render() {
         return (

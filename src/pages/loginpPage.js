@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import { Form, Button, Container, Row, Col } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
-import '../styles/loginPage.css';
 import NavBarComponent from '../components/navBar';
 import FooterComponent from '../components/footer';
+import { LoginContext } from '../pages/loginContext';
+import Axios from 'axios';
+import '../styles/loginPage.css';
 
 class loginPage extends Component{    
     
@@ -11,7 +13,7 @@ class loginPage extends Component{
         super(props);
         this.state = {
             email: '',
-            password: '',
+            pwd: '',
         };
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleChange = this.handleChange.bind(this);
@@ -21,12 +23,23 @@ class loginPage extends Component{
         let data = {};
         data[event.target.name] = event.target.value;
         this.setState(data);
-        console.log(this.state)
     }
     
     handleSubmit(event) {
         event.preventDefault();
-        
+        this.authControll();
+    }
+    authControll() {
+        Axios.post('http://localhost:4000/user/login', this.state)
+        .then((response) => {
+            localStorage.setItem('Token', response.data['token']);
+            this.context.getUser(response.data.token);
+            this.props.history.push('/signup')
+        }).catch((err) => {
+            console.log(err);
+            // toast.error('Preencha todos os campos!');
+        })
+
     }
 
     render() {
@@ -47,13 +60,13 @@ class loginPage extends Component{
                     
                         <Form.Group controlId="formBasicPassword" className={'form_align'}>
                             <Form.Label className={'text_color_dark'}>Password</Form.Label>
-                            <Form.Control onChange={this.handleChange} type="password" placeholder="Password" name="password"/>
+                            <Form.Control onChange={this.handleChange} type="password" placeholder="Password" name="pwd"/>
                         </Form.Group>
                         <div align='center' className={'top_space2'}>
                             <Container>
                                 <Row align='center'>
                                     <Col className={'col_left'}>
-                                        <Button variant="light" type="submit">
+                                        <Button variant="light" type="submit" onClick={this.handleSubmit}>
                                             Login
                                         </Button>
                                     </Col>
@@ -64,7 +77,7 @@ class loginPage extends Component{
                                             </p>
                                         </div>
                                         <LinkContainer to='signup/'>
-                                        <Button variant="light" type='button' onClick={this.signup}>
+                                        <Button variant="light" type='button'>
                                             Cadastro
                                         </Button>
                                         </LinkContainer>
@@ -82,4 +95,5 @@ class loginPage extends Component{
     }
 }
 
+loginPage.contextType = LoginContext;
 export default loginPage;

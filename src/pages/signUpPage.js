@@ -3,9 +3,10 @@ import { Form, Col, Button } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
 import NavBarComponent from '../components/navBar';
 import FooterComponent from '../components/footer';
-import CalendarComponent from '../components/calendar';
 import '../styles/signUpPage.css';
 import axios from 'axios';
+import DatePicker from 'react-datepicker';
+import "react-datepicker/dist/react-datepicker.css";
 class signUpPage extends Component {
     
     constructor(props){
@@ -17,29 +18,31 @@ class signUpPage extends Component {
             username:'',
             category:'',
             instituition:'',
-            date_birth:'',
+            date_birth :new Date(),
             city:'',
             state:'',
-            county:'',
+            country:'',
             pwd:'',
             pwd_confirm:'',
             
         };
         this.handleChange = this.handleChange.bind(this);
+        this.handleChangeCalendar = this.handleChangeCalendar.bind(this)
     };    
     handleChange(event) {
         let data = {};
         data[event.target.name] = event.target.value;
         this.setState(data);
-    };
+    }
+    handleChangeCalendar(event, name) {
+        let data = {};
+        data[name] = event
+        this.setState(data)
+    }
 
     handleSubmit = event => {
         event.preventDefault();
-
-        const user = {
-           
-        }
-        console.log(CalendarComponent.state)
+        
         axios.post('http://localhost:4000/user/signup', 
             {  email:this.state.email,
                 username:this.state.username,
@@ -48,7 +51,7 @@ class signUpPage extends Component {
                 pwd:this.state.pwd,
                 category:this.state.category,
                 institution:this.state.instituition,
-                age:this.state.date_birth,
+                age:String( this.state.date_birth.getDate()) +'/'+String(this.state.date_birth.getMonth()+1)+'/'+String(this.state.date_birth.getFullYear()),
                 city:this.state.city,
                 state:this.state.state,
                 country:this.state.country, })
@@ -60,19 +63,9 @@ class signUpPage extends Component {
         .catch(error => {
             console.log(error.response)
         })
-        console.log(user)
     }
 
-    render() {
-        let minOffset = 0, maxOffset = 10;
-        let thisYear = (new Date()).getFullYear();
-        let allYears = [];
-        for(let x = 0; x <= maxOffset; x++) {
-            allYears.push(thisYear - x)
-        }
-    
-        const yearList = allYears.map((x) => {return(<option key={x}>{x}</option>)});
-        
+    render() {        
         return (
             <div className={'screen'}>
                 <NavBarComponent/>
@@ -153,9 +146,7 @@ class signUpPage extends Component {
                                     <div className={'calendar_style'}>
                                         <Form.Group>
                                             <Form.Label className={'text_color_dark'}>Data de Nascimento</Form.Label><br/>
-                                            <Form.Control as='select' onChange={this.handleChange} name='date_birth'>
-                                                <option>12</option>
-                                            </Form.Control>
+                                            <DatePicker dateFormat='dd/mm/yyyy' selected={this.state.date_birth} onChange={(date) => {this.handleChangeCalendar(date, 'date_birth')}} className={'calendar_block'}/>
                                         </Form.Group>
                                     </div>
                                 </Col>
