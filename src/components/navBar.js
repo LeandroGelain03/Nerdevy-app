@@ -8,7 +8,7 @@ class NavBar_component extends Component {
             <div className={'navbar_default'} >
                 <div className={'navbar_shadow'}>
                     <Navbar className={'navbar_shadow'}>
-                        <Navbar.Brand href="/login">
+                        <Navbar.Brand href="/home">
                         <img src={require("../img/logos/verde_lado_lado.svg")}
                             className="d-inline-block align-top"
                             width='70%'

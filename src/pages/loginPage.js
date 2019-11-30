@@ -3,7 +3,7 @@ import { Form, Button, Container, Row, Col } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
 import NavBarComponent from '../components/navBar';
 import FooterComponent from '../components/footer';
-import { LoginContext } from '../pages/loginContext';
+import { LoginContext } from './loginContext';
 import Axios from 'axios';
 import '../styles/loginPage.css';
 
@@ -34,10 +34,9 @@ class loginPage extends Component{
         .then((response) => {
             localStorage.setItem('Token', response.data['token']);
             this.context.getUser(response.data.token);
-            this.props.history.push('/signup')
+            this.props.history.push(`/dashboard/`)
         }).catch((err) => {
             console.log(err);
-            // toast.error('Preencha todos os campos!');
         })
 
     }

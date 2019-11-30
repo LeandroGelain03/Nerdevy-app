@@ -1,0 +1,33 @@
+.body {
+    height: 100%;
+    width: 100%;
+    padding-left: 64px;
+}
+.sidebar_color{
+    background-color: #181a19;
+    position: fixed ;
+    
+}
+.screen_dash{
+    width: 100%;
+    height: 100%;
+    background-color: #11241a;
+}
+.body_content{
+    background-color: #11241a;
+    width: 100%;
+    height: 1000px;
+    padding: 4% 4% 20px 4%;
+}
+.init_sidebar{
+    margin-top: 25px;
+}
+.sidebar_full{
+    height: 2000%;
+}
+.text_color_dark{
+    color: #FFFFFF;
+}
+.logout_button {
+    padding-top: 43vw;
+}

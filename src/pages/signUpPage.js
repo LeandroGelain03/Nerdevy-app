@@ -7,6 +7,7 @@ import '../styles/signUpPage.css';
 import axios from 'axios';
 import DatePicker from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css";
+import { LoginContext } from './loginContext';
 class signUpPage extends Component {
     
     constructor(props){
@@ -28,7 +29,8 @@ class signUpPage extends Component {
         };
         this.handleChange = this.handleChange.bind(this);
         this.handleChangeCalendar = this.handleChangeCalendar.bind(this)
-    };    
+    };
+       
     handleChange(event) {
         let data = {};
         data[event.target.name] = event.target.value;
@@ -40,31 +42,33 @@ class signUpPage extends Component {
         this.setState(data)
     }
 
-    handleSubmit = event => {
+    handleSubmit = (event) =>{
         event.preventDefault();
-        
         axios.post('http://localhost:4000/user/signup', 
-            {  email:this.state.email,
-                username:this.state.username,
-                first_name: this.state.first_name,
-                last_name:this.state.last_name,
-                pwd:this.state.pwd,
-                category:this.state.category,
-                institution:this.state.instituition,
-                age:String( this.state.date_birth.getDate()) +'/'+String(this.state.date_birth.getMonth()+1)+'/'+String(this.state.date_birth.getFullYear()),
-                city:this.state.city,
-                state:this.state.state,
-                country:this.state.country, })
-        .then (res => {
-            console.log(res);
-            console.log(res.data)
-
+        {   "email":this.state.email,
+            "username":this.state.username,
+            "first_name": this.state.first_name,
+            "last_name":this.state.last_name,
+            "pwd":this.state.pwd,
+            "category":this.state.category,
+            "institution":this.state.instituition,
+            "age":String( this.state.date_birth.getDate()) +'/'+String(this.state.date_birth.getMonth()+1)+'/'+String(this.state.date_birth.getFullYear()),
+            "city":this.state.city,
+            "state":this.state.state,
+            "country":this.state.country, }
+        )
+        .then (response => {
+            console.log(response);
+                localStorage.setItem('Token', response.data['token']);
+                this.context.getUser(response.data.tokrn);
+                this.props.history.push(`/dashboard/`)
         })
         .catch(error => {
             console.log(error.response)
+            alert('Email já cadastrado')
         })
     }
-
+              
     render() {        
         return (
             <div className={'screen'}>
@@ -82,7 +86,7 @@ class signUpPage extends Component {
                                 <Col>
                                     <Form.Group  className={'space_between_FN'}>
                                         <Form.Label className={'text_color_dark'}>Primeiro nome</Form.Label>
-                                        <Form.Control onChange={this.handleChange} placeholder='Primeiro nome' name='first_name'></Form.Control>
+                                        <Form.Control onChange={this.handleChange} placeholder='Primeiro nome' name='first_name' ></Form.Control>
                                     </Form.Group>
                                 </Col>
                                
@@ -129,7 +133,7 @@ class signUpPage extends Component {
                                 <Col>
                                     <Form.Group className={'space_between_LN'}>
                                         <Form.Label className={'text_color_dark'}>Categoria</Form.Label>
-                                        <Form.Control as='select' onChange={this.handleChange} name='category'>
+                                        <Form.Control as='select' onChange={this.handleChange} name='category' >
                                             <option> Escolha... </option>
                                             <option> Estudante </option>
                                             <option> Estudante - Empregado </option>
@@ -175,7 +179,7 @@ class signUpPage extends Component {
                                 </Col>
                             </Form.Row>
                             <div className={'btn_signUp'}>
-                                <LinkContainer to='/'>
+                                <LinkContainer to='/home'>
                                     <Button variant="light" type='submit' onClick={this.handleSubmit}>
                                         Cadastre!
                                     </Button>
@@ -189,5 +193,5 @@ class signUpPage extends Component {
         )
     }
 }
-
+signUpPage.contextType = LoginContext;
 export default signUpPage;
