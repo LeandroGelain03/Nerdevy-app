@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserHistory } from 'react-router-dom';
+import  { createHashHistory }  from 'history';
 import SideNav, { NavItem, NavIcon, NavText } from '@trendmicro/react-sidenav';
 import '@trendmicro/react-sidenav/dist/react-sidenav.css';
 import '../styles/DashboardPage.css';
@@ -13,7 +13,8 @@ export default class SidebarComponent extends Component{
     logout = () =>{
         localStorage.clear()
         console.log('clear localstorage')
-        BrowserHistory.push('/')
+        const history = createHashHistory()
+        history.push('/')    
     }
 
     render() {

@@ -35,12 +35,12 @@ class loginPage extends Component{
             localStorage.setItem('Token', response.data['token']);
             this.context.getUser(response.data.token);
             this.props.history.push(`/dashboard/`)
+            return(<div></div>)
         }).catch((err) => {
-            console.log(err);
+            console.log(err.response);
         })
 
     }
-
     render() {
         return(
         <div className={'screen'}>
@@ -61,6 +61,7 @@ class loginPage extends Component{
                             <Form.Label className={'text_color_dark'}>Password</Form.Label>
                             <Form.Control onChange={this.handleChange} type="password" placeholder="Password" name="pwd"/>
                         </Form.Group>
+                        
                         <div align='center' className={'top_space2'}>
                             <Container>
                                 <Row align='center'>

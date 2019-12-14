@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import { Form, Col, Button } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
+import { LoginContext } from './loginContext';
 import NavBarComponent from '../components/navBar';
 import FooterComponent from '../components/footer';
-import '../styles/signUpPage.css';
 import axios from 'axios';
 import DatePicker from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css";
-import { LoginContext } from './loginContext';
+import '../styles/signUpPage.css';
 class signUpPage extends Component {
     
     constructor(props){
