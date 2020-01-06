@@ -11,21 +11,20 @@ class AddCard extends Component {
         };
     }  
 
-    alert_number_card(number_card){
-        console.log.arguments(number_card)
-        alert('card numero:'+ number_card )
+    alert_number_card = (number_card) => {
+        alert(number_card)
     }
 
     getCards() {
         Axios({
             method: 'POST',
             url: 'http://localhost:4000/card/view',
-            data: { initial_number : 3}
+            data: { initial_number : 5}
         }).then((response) => {
             this.setState({
                 card: response.data
             })
-            console.log(this.state.card)
+            // console.log(this.state.card)
         }).catch((error) => console.log(error))    
     }
     componentDidMount() {
@@ -34,9 +33,9 @@ class AddCard extends Component {
 
     CardIndividual() {
         return this.state.card.map( card =>   
-            { 
-            var idCard = card.idChallenges
-            return (
+            {
+            var cardID = card.idChallenges 
+                return (
                 <div className={'background'}>
                     <div className={'contentCard'}>
                         <div className={'titleStyle'}>
@@ -46,7 +45,7 @@ class AddCard extends Component {
                             {card.description_challenge}                             
                         </p>
                         <div className={'details'}>
-                            <Button variant="secondary" onClick={this.alert_number_card.bind(idCard)}>detalhes</Button>
+                            <Button variant="secondary" onClick={() => this.alert_number_card(cardID)}>detalhes</Button>
                         </div>
                     </div>
                 </div>
