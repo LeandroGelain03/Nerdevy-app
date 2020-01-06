@@ -33,8 +33,10 @@ class loginPage extends Component{
         Axios.post('http://localhost:4000/user/login', this.state)
         .then((response) => {
             localStorage.setItem('Token', response.data['token']);
-            this.context.getUser(response.data.token);
+            console.log(response.data)
+            this.context.getUser([response.data.token,response.data.email]);
             this.props.history.push(`/dashboard/`)
+            console.log(this.context.getUser)
             return(<div></div>)
         }).catch((err) => {
             console.log(err.response);
@@ -77,9 +79,9 @@ class loginPage extends Component{
                                             </p>
                                         </div>
                                         <LinkContainer to='signup/'>
-                                        <Button variant="light" type='button'>
-                                            Cadastro
-                                        </Button>
+                                            <Button variant="light" type='button'>
+                                                Cadastro
+                                            </Button>
                                         </LinkContainer>
                                     </Col>
                                 </Row>
