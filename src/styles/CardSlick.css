@@ -18,6 +18,11 @@
     font-size: 18px;
     font-weight: bolder;
     padding-bottom: 15px;
+
+    width: 15vw;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 .contentCard{
     padding-top: 10px;
@@ -38,4 +43,17 @@
 }
 .cardsContainer{
     margin-right: 3vw;
+}
+
+.titleStyleDetails{
+    font-size: 23px;
+    font-weight: bolder;
+    margin-bottom: 2vw;
+}
+.subtitleDetails{
+    font-size: 18px;
+    font-weight: bolder;
+    margin-top: 15px;
+    margin-bottom: 10px;
+
 }

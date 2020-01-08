@@ -11,7 +11,7 @@ class AddCard extends Component {
             open: false,
             email:localStorage.getItem('Email'),
             title_card:'',
-            points:'',
+            points:"10",
             description:'',
             category:'',
         };
@@ -35,8 +35,13 @@ class AddCard extends Component {
                 description: this.state.description,
                 points: this.state.points
             }
-        });
+        })
+        .then(
+            (response)=>{console.log(response)},
+            (error)=>{console.log(error)}
+        );
         this.setState({open:false})
+        // window.location.reload()
     }
 
     onOpenModal = () => {
