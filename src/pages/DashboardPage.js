@@ -24,9 +24,9 @@ class homePage extends Component {
                                     <div className={'cardSlick'}>
                                         <CardsList/>
                                     </div>
-                                    <div>
+                                    <div className={'addCardButton'}>
                                         <AddCardComponent/>
-                                    </div>                                
+                                    </div>
                                 </div>
                             </div>
                         </div>

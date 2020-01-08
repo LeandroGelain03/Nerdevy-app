@@ -33,11 +33,9 @@ class loginPage extends Component{
         Axios.post('http://localhost:4000/user/login', this.state)
         .then((response) => {
             localStorage.setItem('Token', response.data['token']);
-            console.log(response.data)
+            localStorage.setItem('Email', response.data['email'])
             this.context.getUser([response.data.token,response.data.email]);
             this.props.history.push(`/dashboard/`)
-            console.log(this.context.getUser)
-            return(<div></div>)
         }).catch((err) => {
             console.log(err.response);
         })

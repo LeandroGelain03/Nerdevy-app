@@ -24,7 +24,6 @@ class AddCard extends Component {
             this.setState({
                 card: response.data
             })
-            // console.log(this.state.card)
         }).catch((error) => console.log(error))    
     }
     componentDidMount() {
@@ -55,9 +54,12 @@ class AddCard extends Component {
 
     render() {
         return (
-            <div className="container-fluid py-2">
-                <div className="d-flex flex-row flex-nowrap">
-                        {this.CardIndividual()}
+            <div className={'cardsContainer'}>
+                <div className="container-fluid py-2">
+                    <div className="d-flex flex-row flex-nowrap">
+                            {this.CardIndividual()}
+                    </div>
+                    
                 </div>
             </div>
         )

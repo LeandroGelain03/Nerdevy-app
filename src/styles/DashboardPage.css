@@ -32,12 +32,16 @@
     margin-top: 26vw;
 }
 .titleChallenges{
-    padding-bottom: 1vw;
+    margin-bottom: 3vw;
+    margin-left: 1vw;
 }
 .cardsField{
     margin-top: 2vw;
     margin-bottom: 2vw;
 }
 .cardSlick {
-    padding-bottom: 5vw;
+    padding-bottom: 1vw;
+}
+.addCardButton {
+    margin-left: 74vw;
 }
