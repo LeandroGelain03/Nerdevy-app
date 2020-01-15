@@ -4,6 +4,7 @@ import FooterComponent from '../components/footer';
 import SidebarComponent from '../components/sidebarComponent';
 import AddCardComponent from '../components/addCards';
 import CardsList from '../components/Cards';
+import AllCardsButton from '../components/allCardsButton';
 import '../styles/DashboardPage.css';
 
 class homePage extends Component {
@@ -26,6 +27,7 @@ class homePage extends Component {
                                     </div>
                                     <div className={'addCardButton'}>
                                         <AddCardComponent/>
+                                        <AllCardsButton/>
                                     </div>
                                 </div>
                             </div>

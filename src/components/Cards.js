@@ -10,7 +10,6 @@ class AddCard extends Component {
             card: [],
         };
     } 
-
     onOpenModal = () => {
         this.setState({ open:true });
     };
@@ -22,7 +21,8 @@ class AddCard extends Component {
         Axios({
             method: 'POST',
             url: 'http://localhost:4000/card/listLimit',
-            data: { initial_number : 5}
+            data: { initial_number : 5},
+            headers: { "Access-Control-Allow-Origin": "*", }
         }).then((response) => {
             this.setState({
                 card: response.data
@@ -60,7 +60,6 @@ class AddCard extends Component {
                     <div className="d-flex flex-row flex-nowrap">
                             {this.CardIndividual()}
                     </div>
-                    
                 </div>
             </div>
         )

@@ -5,6 +5,7 @@ import './index.css';
 import LoginPage from './pages/loginPage';
 import SignUpPage from './pages/signUpPage';
 import DashboardPage from './pages/DashboardPage';
+import CardsPage from './pages/cardsPage';
 import * as serviceWorker from './serviceWorker';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -20,8 +21,9 @@ ReactDOM.render(
     <BrowserRouter>
         <Switch>
             <Route path="/" exact component={LoginPage} />
-            <Route path="/signup/" component={SignUpPage} />
-            <PrivateRoute path="/dashboard/" component={DashboardPage} />
+            <Route path="/signup/" exact component={SignUpPage} />
+            <PrivateRoute path="/dashboard/" exact component={DashboardPage} />
+            <PrivateRoute path="/dashboard/allCards/"  component={CardsPage} />
         </Switch>
     </ BrowserRouter>
     , document.getElementById('root')
