@@ -23,7 +23,7 @@ class CardPage extends Component {
     listCards () {
         Axios({
             method : "POST",
-            url: "http://localhost:4000/card/listLimit",
+            url: "http://localhost:3333/card/listLimit",
             data: { initial_number: 0},
         }).then((response) => {
             this.setState({
@@ -45,10 +45,10 @@ class CardPage extends Component {
                                 <p className={'titleStyle'}>{card.title}</p>
                             </div>  
                             <p className={'description'}>
-                                {card.description_challenge}                             
+                                {card.description}                             
                             </p>
                             <CardDetails>
-                            {card.idChallenges} 
+                            {card._id} 
                             </CardDetails>
                         </div>
                     </div>

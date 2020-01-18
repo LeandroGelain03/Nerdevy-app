@@ -44,7 +44,7 @@ class signUpPage extends Component {
 
     handleSubmit = (event) =>{
         event.preventDefault();
-        axios.post('http://localhost:4000/user/signup', 
+        axios.post('http://localhost:3333/user/signup', 
         {   "email":this.state.email,
             "username":this.state.username,
             "first_name": this.state.first_name,

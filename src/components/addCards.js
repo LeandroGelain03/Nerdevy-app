@@ -27,7 +27,7 @@ class AddCard extends Component {
         event.preventDefault();
         Axios({
             method:"POST",
-            url:'http://localhost:4000/card/add',
+            url:'http://localhost:3333/card/add',
             data: {
                 email: this.state.email,
                 category: this.state.category,

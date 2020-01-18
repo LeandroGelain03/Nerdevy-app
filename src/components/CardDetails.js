@@ -18,11 +18,11 @@ export default class CardDetails extends Component{
     onCloseModal = () => {
         this.setState({ open:false });
     }
-
     getDetails = () => {
+        console.log(this.props.children)
         Axios({
             method: 'POST',
-            url: 'http://localhost:4000/card/findById',
+            url: 'http://localhost:3333/card/findById',
             data: { idCard: this.props.children }
         }).then((response) => {
             this.setState({
@@ -50,13 +50,13 @@ export default class CardDetails extends Component{
                         <div className={'subtitleDetails'}>
                             categoria:
                         </div>
-                        {this.state.details.category_challenge}
+                        {this.state.details.category}
                     </div>
                     <div>
                         <div className={'subtitleDetails'}>
                             descrição
                         </div>
-                        {this.state.details.description_challenge}
+                        {this.state.details.description}
                     </div>
                     <div>
                         <div className={'subtitleDetails'}>

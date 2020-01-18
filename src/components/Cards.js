@@ -20,13 +20,14 @@ class AddCard extends Component {
     getCards() {
         Axios({
             method: 'POST',
-            url: 'http://localhost:4000/card/listLimit',
+            url: 'http://localhost:3333/card/listLimit',
             data: { initial_number : 5},
             headers: { "Access-Control-Allow-Origin": "*", }
         }).then((response) => {
             this.setState({
                 card: response.data
             })
+            console.log(this.state.card)
         }).catch((error) => console.log(error))    
     }
     componentDidMount() {
@@ -42,10 +43,10 @@ class AddCard extends Component {
                             <p className={'titleStyle'}>{card.title}</p>
                         </div>  
                         <p className={'description'}>
-                            {card.description_challenge}                             
+                            {card.description}                              
                         </p>
                         <CardDetails>
-                           {card.idChallenges} 
+                           {card._id} 
                         </CardDetails>
                     </div>
                 </div>

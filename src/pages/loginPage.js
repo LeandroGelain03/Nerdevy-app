@@ -30,7 +30,7 @@ class loginPage extends Component{
         this.authControll();
     }
     authControll() {
-        Axios.post('http://localhost:4000/user/login', this.state)
+        Axios.post('http://localhost:3333/user/login', this.state)
         .then((response) => {
             localStorage.setItem('Token', response.data['token']);
             localStorage.setItem('Email', response.data['email'])
