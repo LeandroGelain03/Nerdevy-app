@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import '../styles/AddCards.css';
+import '../../styles/AddCards.css';
 import Modal from 'react-responsive-modal'
 import {Form, Col, Button } from 'react-bootstrap'
 import Axios from 'axios';
@@ -23,9 +23,8 @@ class AddCard extends Component {
         data[event.target.name] = event.target.value;
         this.setState(data);
     };
-    handleSubmit = (event) =>{
-        event.preventDefault();
-        Axios({
+     async handleSubmit(event){
+        await Axios({
             method:"POST",
             url:'http://localhost:3333/card/add',
             data: {
@@ -41,7 +40,7 @@ class AddCard extends Component {
             (error)=>{console.log(error)}
         );
         this.setState({open:false})
-        // window.location.reload()
+        window.location.reload()
     }
 
     onOpenModal = () => {
@@ -110,7 +109,7 @@ class AddCard extends Component {
                             </Form.Row>
                         </Form>
                         <div className={'buttonContainer'}>
-                            <Button variant="secondary" type='submit' onClick={this.handleSubmit}>Salvar</Button>
+                            <Button variant="secondary" type='submit' onClick={() => this.handleSubmit()}>Salvar</Button>
                         </div>
                     </div>
                 </Modal>

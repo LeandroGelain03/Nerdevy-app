@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { Form, Button, Container, Row, Col } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
-import NavBarComponent from '../components/navBar';
-import FooterComponent from '../components/footer';
+import NavBarComponent from '../components/layout/navBar';
+import FooterComponent from '../components/layout/footer';
 import { LoginContext } from './loginContext';
 import Axios from 'axios';
 import '../styles/loginPage.css';
@@ -29,8 +29,8 @@ class loginPage extends Component{
         event.preventDefault();
         this.authControll();
     }
-    authControll() {
-        Axios.post('http://localhost:3333/user/login', this.state)
+    async authControll() {
+        await Axios.post('http://localhost:3333/user/login', this.state)
         .then((response) => {
             localStorage.setItem('Token', response.data['token']);
             localStorage.setItem('Email', response.data['email'])

@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import { Form, Col, Button } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
 import { LoginContext } from './loginContext';
-import NavBarComponent from '../components/navBar';
-import FooterComponent from '../components/footer';
+import NavBarComponent from '../components/layout/navBar';
+import FooterComponent from '../components/layout/footer';
 import axios from 'axios';
 import DatePicker from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css";
@@ -41,10 +41,8 @@ class signUpPage extends Component {
         data[name] = event
         this.setState(data)
     }
-
-    handleSubmit = (event) =>{
-        event.preventDefault();
-        axios.post('http://localhost:3333/user/signup', 
+    async postSignUp() {
+        await axios.post('http://localhost:3333/user/signup', 
         {   "email":this.state.email,
             "username":this.state.username,
             "first_name": this.state.first_name,
@@ -67,6 +65,10 @@ class signUpPage extends Component {
             console.log(error.response)
             alert('Email já cadastrado')
         })
+    }
+    handleSubmit = (event) =>{
+        event.preventDefault();
+        this.postSignUp()
     }
               
     render() {        

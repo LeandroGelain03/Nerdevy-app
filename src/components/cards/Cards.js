@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import '../styles/CardSlick.css';
+import '../../styles/CardSlick.css';
 import Axios from 'axios';
 import CardDetails from './CardDetails';
 
@@ -17,8 +17,8 @@ class AddCard extends Component {
         this.setState({ open:false });
     }
 
-    getCards() {
-        Axios({
+    async getCards() {
+        await Axios({
             method: 'POST',
             url: 'http://localhost:3333/card/listLimit',
             data: { initial_number : 5},
@@ -46,7 +46,7 @@ class AddCard extends Component {
                             {card.description}                              
                         </p>
                         <CardDetails>
-                           {card._id} 
+                           {card} 
                         </CardDetails>
                     </div>
                 </div>

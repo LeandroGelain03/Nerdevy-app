@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { footer } from 'react-bootstrap';
-import '../styles/loginPage.css';
+import '../../styles/loginPage.css';
 
 class Footer_component extends Component {
     render() {

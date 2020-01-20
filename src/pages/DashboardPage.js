@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import NavBarComponent from '../components/navBar';
-import FooterComponent from '../components/footer';
-import SidebarComponent from '../components/sidebarComponent';
-import AddCardComponent from '../components/addCards';
-import CardsList from '../components/Cards';
-import AllCardsButton from '../components/allCardsButton';
+import NavBarComponent from '../components/layout/navBar';
+import FooterComponent from '../components/layout/footer';
+import SidebarComponent from '../components/layout/sidebarComponent';
+import AddCardComponent from '../components/cards/addCards';
+import CardsList from '../components/cards/Cards';
+import AllCardsButton from '../components/cards/allCardsButton';
 import '../styles/DashboardPage.css';
 
 class homePage extends Component {

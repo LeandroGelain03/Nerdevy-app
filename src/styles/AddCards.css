@@ -36,3 +36,9 @@
 .labelForm{
     font-weight: bolder;
 }
+.spaceBetween{
+    margin-left:0;
+    width: 40%;
+    display: flex;
+    justify-content: space-between
+}

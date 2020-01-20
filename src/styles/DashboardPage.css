@@ -43,5 +43,8 @@
     padding-bottom: 1vw;
 }
 .addCardButton {
-    margin-left: 74vw;
+    margin-left: 1vw;
+    width: 96.5%;
+    display: flex;
+    justify-content: space-between
 }

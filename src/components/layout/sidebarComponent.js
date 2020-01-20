@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import  { createHashHistory }  from 'history';
 import SideNav, { NavItem, NavIcon, NavText } from '@trendmicro/react-sidenav';
 import '@trendmicro/react-sidenav/dist/react-sidenav.css';
-import '../styles/DashboardPage.css';
+import '../../styles/DashboardPage.css';
 
 export default class SidebarComponent extends Component{
     constructor(props) {
@@ -25,7 +25,7 @@ export default class SidebarComponent extends Component{
                 <SideNav.Nav defaultSelected="home" className={'init_sidebar'}>
                     <NavItem eventKey="home">
                         <NavIcon>
-                            <img src={require('../img/logos/home-icon.svg')} style={{width: '40%'}} alt='home-icon'/>
+                            <img src={require('../../img/logos/home-icon.svg')} style={{width: '40%'}} alt='home-icon'/>
                         </NavIcon>
                         <NavText>
                             Home
@@ -33,7 +33,7 @@ export default class SidebarComponent extends Component{
                     </NavItem>
                     <NavItem eventKey="friends">
                         <NavIcon eventKey='friends'>
-                            <img src={require('../img/logos/friend-icon.svg')} style={{width: '50%'}} alt='friends-icon'/>
+                            <img src={require('../../img/logos/friend-icon.svg')} style={{width: '50%'}} alt='friends-icon'/>
                         </NavIcon>
                         <NavText>
                             Amigos
@@ -51,7 +51,7 @@ export default class SidebarComponent extends Component{
                     </NavItem>
                     <NavItem>
                         <NavIcon eventKey='group'>
-                            <img src={require('../img/logos/group-icon.svg')} style={{width: '50%'}} alt='friends-icon'></img>
+                            <img src={require('../../img/logos/group-icon.svg')} style={{width: '50%'}} alt='friends-icon'></img>
                         </NavIcon>
                         <NavText>
                             Grupos
@@ -59,7 +59,7 @@ export default class SidebarComponent extends Component{
                     </NavItem>
                     <NavItem className={'logout_button'} onClick={this.logout}>
                         <NavIcon eventKey='logout'>
-                            <img src={require('../img/logos/logout-icon.svg')} style={{width: '50%'}} alt='friends-icon'></img>
+                            <img src={require('../../img/logos/logout-icon.svg')} style={{width: '50%'}} alt='friends-icon'></img>
                         </NavIcon>
                         <NavText>
                             Logout

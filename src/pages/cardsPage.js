@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import NavBarComponent from '../components/navBar';
-import FooterComponent from '../components/footer';
-import SidebarComponent from '../components/sidebarComponent';
-import CardDetails from '../components/CardDetails';
+import NavBarComponent from '../components/layout/navBar';
+import FooterComponent from '../components/layout/footer';
+import SidebarComponent from '../components/layout/sidebarComponent';
+import CardDetails from '../components/cards/CardDetails';
+
 import Axios from 'axios';
 import Columns from 'react-columns';
 import '../styles/CardSlick.css';
@@ -20,8 +21,8 @@ class CardPage extends Component {
     onCloseModal = () => {
         this.setState({ open:false });
     }
-    listCards () {
-        Axios({
+    async listCards () {
+        await Axios({
             method : "POST",
             url: "http://localhost:3333/card/listLimit",
             data: { initial_number: 0},

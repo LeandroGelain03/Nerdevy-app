@@ -1,7 +1,7 @@
 import React ,{ Component } from "react";
 import DatePicker from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css";
-import '../styles/signUpPage.css';
+import '../../styles/signUpPage.css';
 export default class CalendarComponent extends Component{
     
     constructor(props){

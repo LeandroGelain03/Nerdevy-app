@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import { Button } from 'react-bootstrap';
 import Modal from 'react-responsive-modal';
 import Axios from 'axios';
-
+import DeleteCard from './deleteCardsComponent';
+import EditCard from './editCardComponent';
 export default class CardDetails extends Component{
     constructor(props){
         super(props);
@@ -19,11 +20,10 @@ export default class CardDetails extends Component{
         this.setState({ open:false });
     }
     getDetails = () => {
-        console.log(this.props.children)
         Axios({
             method: 'POST',
             url: 'http://localhost:3333/card/findById',
-            data: { idCard: this.props.children }
+            data: { idCard: this.props.children._id }
         }).then((response) => {
             this.setState({
                 details: response.data
@@ -68,6 +68,12 @@ export default class CardDetails extends Component{
                             {this.state.details.created_by}
                         </div>
                     </div>
+                    <DeleteCard>
+                        {this.props.children}
+                    </DeleteCard>
+                    <EditCard>
+                        {this.props.children}
+                    </EditCard>
                 </Modal>
             </div>
         )
