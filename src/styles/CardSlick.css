@@ -38,9 +38,6 @@
     text-overflow: ellipsis;
 }
 
-.details{
-    margin-top: 3vw;
-}
 .cardsContainer{
     margin-right: 3vw;
 }
@@ -53,10 +50,22 @@
 .subtitleDetails{
     font-size: 18px;
     font-weight: bolder;
-    margin-top: 3vw;
-    margin-bottom: 3vw;
+    margin-top: 2.5vw;
+    margin-bottom: 1vw;
 
 }
 .grid_cards{
     margin-bottom: 3vw;
+}
+.alignButtons{
+    margin-left: 1vw;
+    width: 93%;
+    display: flex;
+    justify-content: space-between
+}
+.alignButtonsCards{
+    margin-top: 3vw !important;
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
 }

@@ -19,8 +19,8 @@ export default class CardDetails extends Component{
     onCloseModal = () => {
         this.setState({ open:false });
     }
-    getDetails = () => {
-        Axios({
+    async getDetails() {
+        await Axios({
             method: 'POST',
             url: 'http://localhost:3333/card/findById',
             data: { idCard: this.props.children._id }
@@ -35,12 +35,14 @@ export default class CardDetails extends Component{
     }
     render() {
         return (
-            <div className={'details'}>
+            <div>
                 <Button variant="secondary" onClick={this.onOpenModal}>detalhes</Button>
                 <Modal open={this.state.open}
                         onClose={this.onCloseModal}
                         center
-                        classNames={{modal:"modal-content"}}>
+                        classNames={{modal:"modal-content"}}
+                        styles={styles.modalStyles}
+                        >
                     <div>
                         <div className={'titleStyleDetails'}>
                             {this.state.details.title}
@@ -68,14 +70,32 @@ export default class CardDetails extends Component{
                             {this.state.details.created_by}
                         </div>
                     </div>
-                    <DeleteCard>
-                        {this.props.children}
-                    </DeleteCard>
-                    <EditCard>
-                        {this.props.children}
-                    </EditCard>
+                    <div className={'alignButtons'}>
+                        <EditCard>
+                            {this.props.children}
+                        </EditCard>
+                        <DeleteCard>
+                            {this.props.children}
+                        </DeleteCard>
+                    </div>
                 </Modal>
             </div>
         )
+    }
+}
+const styles = {
+    modalStyles: {
+        modal: {
+            borderRadius: "10px",
+            width: "40vw",
+            height: "75%",
+        },
+        closeButton: {
+            cursor:"pointer",
+            color: "black"
+        },
+        closeIcon: {
+            fill: "gray",
+        }
     }
 }

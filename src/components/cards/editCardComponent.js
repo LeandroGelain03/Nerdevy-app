@@ -9,31 +9,48 @@ class EditCard extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            open:false,
-            details: this.props.children
+            open2:false,
+            details: this.props.children,
+            title_card:this.props.children.title,
+            points:this.props.children.points,
+            description:this.props.children.description,
+            category:this.props.children.category,
+            members:[]
         };
+        this.handleChanges = this.handleChanges.bind(this);
     };
-    async deleteCard() {
+    async updateCard() {
         await Axios({
             method:"POST",
             url:'http://localhost:3333/card/update',
             data: {
-                idCard: this.props.children._id
+                idCard: this.props.children._id,
+                email : localStorage.getItem('Email'),
+                category: this.state.category,
+                title: this.state.title_card,
+                description: this.state.description,
+                points: this.state.points,
+                members:[]
             }
         })
         window.location.reload()  
     }
     onOpenModal = () => {
-        this.setState({ open:true });
+        this.setState({ open2:true });
     };
     onCloseModal = () => {
-        this.setState({ open:false });
+        this.setState({ open2:false });
     }
+    handleChanges(event){
+        let data = {};
+        data[event.target.name] = event.target.value;
+        this.setState(data);
+    };
     render() {
         return (
             <div>
-                <Button variant="dark" onClick={this.onOpenModal}> editar </Button>
-                <Modal open={this.state.open} 
+                <Button variant="dark" onClick={this.onOpenModal}>editar</Button>
+                <Modal open={this.state.open2} 
                        onClose={this.onCloseModal}
                        center 
                        classNames={{modal:"modal-content"}}
@@ -44,20 +61,20 @@ class EditCard extends Component {
                             <Form.Row>
                                 <Form.Group>
                                     <Form.Label className={'labelForm'}>Titulo do Card</Form.Label>
-                                    <Form.Control onChange={this.handleChanges} name="title_card"></Form.Control>
+                                    <Form.Control onChange={this.handleChanges} name="title_card" defaultValue={this.props.children.title}></Form.Control>
                                 </Form.Group>
                             </Form.Row>
                             <Form.Row>
                                 <Col>
                                     <Form.Group>
                                         <Form.Label className={'labelForm'}>Categoria</Form.Label>
-                                        <Form.Control onChange={this.handleChanges} name="category"></Form.Control>
+                                        <Form.Control onChange={this.handleChanges} name="category" defaultValue={this.props.children.category}></Form.Control>
                                     </Form.Group>
                                 </Col>
                                 <Col>
                                     <Form.Group>
                                         <Form.Label className={'labelForm'}>Pontos por dificuldade</Form.Label>
-                                        <Form.Control as='select' onChange={this.handleChanges} name="points">
+                                        <Form.Control as='select' onChange={this.handleChanges} name="points" defaultValue={this.props.children.points}>
                                             <option>10</option>
                                             <option>20</option>
                                             <option>30</option>
@@ -79,12 +96,13 @@ class EditCard extends Component {
                                                   as="textarea" 
                                                   className={'descriptionSize'} 
                                                   rows="5" name="description"
+                                                  defaultValue={this.props.children.description}
                                                   />
                                 </Form.Group>
                             </Form.Row>
                         </Form>
                         <div className={'buttonContainer'}>
-                            <Button variant="secondary" type='submit' onClick={() => this.handleSubmit()}>Salvar</Button>
+                            <Button variant="secondary" type='submit' onClick={()=>this.updateCard()}>Salvar</Button>
                         </div>
                     </div>
                 </Modal>
@@ -96,8 +114,8 @@ const styles = {
     modalStyles: {
         modal: {
             borderRadius: "10px",
-            width: "100%",
-            height: "100%",
+            width: "90%",
+            height: "75%",
         },
         closeButton: {
             cursor:"pointer",

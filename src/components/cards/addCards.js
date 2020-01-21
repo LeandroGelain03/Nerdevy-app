@@ -121,8 +121,8 @@ const styles = {
     modalStyles: {
         modal: {
             borderRadius: "10px",
-            width: "50vw",
-            height: "40vw",
+            width: "60%",
+            height: "75%",
         },
         closeButton: {
             cursor:"pointer",

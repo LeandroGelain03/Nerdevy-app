@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import '../../styles/CardSlick.css';
 import Axios from 'axios';
 import CardDetails from './CardDetails';
-
+import JoinButton from './JoinButton';
 class AddCard extends Component {
     constructor(props){
         super(props);
@@ -45,9 +45,14 @@ class AddCard extends Component {
                         <p className={'description'}>
                             {card.description}                              
                         </p>
-                        <CardDetails>
-                           {card} 
-                        </CardDetails>
+                        <div className={"alignButtonsCards"}>
+                            <CardDetails>
+                                {card} 
+                            </CardDetails>
+                            <JoinButton> 
+                                {card}
+                            </JoinButton>
+                        </div>
                     </div>
                 </div>
             )

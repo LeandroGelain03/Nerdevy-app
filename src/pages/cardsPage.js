@@ -3,7 +3,7 @@ import NavBarComponent from '../components/layout/navBar';
 import FooterComponent from '../components/layout/footer';
 import SidebarComponent from '../components/layout/sidebarComponent';
 import CardDetails from '../components/cards/CardDetails';
-
+import JoinButton from '../components/cards/JoinButton'
 import Axios from 'axios';
 import Columns from 'react-columns';
 import '../styles/CardSlick.css';
@@ -46,11 +46,16 @@ class CardPage extends Component {
                                 <p className={'titleStyle'}>{card.title}</p>
                             </div>  
                             <p className={'description'}>
-                                {card.description}                             
+                                {card.description}                              
                             </p>
-                            <CardDetails>
-                            {card._id} 
-                            </CardDetails>
+                            <div className={"alignButtonsCards"}>
+                                <CardDetails>
+                                    {card} 
+                                </CardDetails>
+                                <JoinButton> 
+                                    {card}
+                                </JoinButton>
+                            </div>
                         </div>
                     </div>
                 </div>
