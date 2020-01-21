@@ -4,6 +4,7 @@ import Modal from 'react-responsive-modal';
 import Axios from 'axios';
 import DeleteCard from './deleteCardsComponent';
 import EditCard from './editCardComponent';
+import LeaveButton from './ExitButton';
 export default class CardDetails extends Component{
     constructor(props){
         super(props);
@@ -77,6 +78,9 @@ export default class CardDetails extends Component{
                         <DeleteCard>
                             {this.props.children}
                         </DeleteCard>
+                        <LeaveButton>
+                            {this.props.children}
+                        </LeaveButton>
                     </div>
                 </Modal>
             </div>

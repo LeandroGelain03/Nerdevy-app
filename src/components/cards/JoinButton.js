@@ -17,12 +17,11 @@ class JoinButton extends Component {
                 email:localStorage.getItem('Email')
             }
         })
-        console.log("response",response)
         if (response.data.message ==="Usuario já faz parte do card.") {
-            notify.show('Você já faz parte do card!',"warning",2000);
+            notify.show('Você já faz parte do card!',"warning",1000);
         }
         if (response.data.message === "Membro inserido."){
-            notify.show('Você ingressou no card!',"success",2000);
+            notify.show('Você ingressou no card!',"success",1000);
         } 
     }
     render() {
