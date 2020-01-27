@@ -1,6 +1,7 @@
 
 .navbar_default {
-    background-color: #181a19 !important;      
+    background-color: #181a19 !important;  
+    justify-content: space-between;    
 }
 .navbar_shadow {
     box-shadow: 5px 5px 7px rgba(0, 0, 0, 0.493);
@@ -62,4 +63,11 @@
 .screen{
     margin: 0px;
     width: 100%;
+}
+.buttonDropdown{
+    background-color: #181a19 !important;
+    border-color: #181a19 !important;
+}
+.profileIconStyle{
+    margin-left: 64vw;
 }

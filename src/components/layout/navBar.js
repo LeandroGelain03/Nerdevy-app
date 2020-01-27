@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Navbar } from 'react-bootstrap';
 import '../../styles/loginPage.css';
-
 class NavBar_component extends Component {
     render () {
         return (

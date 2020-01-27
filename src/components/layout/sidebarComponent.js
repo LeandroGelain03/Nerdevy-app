@@ -7,25 +7,41 @@ import '../../styles/DashboardPage.css';
 export default class SidebarComponent extends Component{
     constructor(props) {
         super(props);
+        this.state = {
+            selected: this.getSelected()
+        }
+        this.changeSelected = this.changeSelected.bind(this)
         this.logout = this.logout.bind(this);
       }
-    
+    getSelected () {
+        if (!localStorage.getItem("Selected")){
+            localStorage.setItem("Selected","home")
+        }  return localStorage.getItem("Selected")
+    }
+
     logout = () =>{
         localStorage.clear()
         console.log('clear localstorage')
         const history = createHashHistory()
         history.push('/')    
     }
-
+    redirectPage(path) {
+        const history = createHashHistory()
+        history.push(path)
+    }
+    changeSelected (selected, path) {
+        this.setState({selected:localStorage.setItem("Selected",selected)})
+        window.location.href = path
+    }
     render() {
         return (
-            <div  className={'sidebar_full'}>
-            <SideNav onSelect={(selected) => {}} className={'sidebar_color'}>
+            <div className={'sidebar_full'}>
+            <SideNav className={'sidebar_color'}>
                 <SideNav.Toggle />
-                <SideNav.Nav defaultSelected="home" className={'init_sidebar'}>
+                <SideNav.Nav defaultSelected={this.state.selected} className={'init_sidebar'}>
                     <NavItem eventKey="home">
                         <NavIcon>
-                            <img src={require('../../img/logos/home-icon.svg')} style={{width: '40%'}} alt='home-icon'/>
+                            <img src={require('../../img/logos/home-icon.svg')} style={{width: '40%'}} alt='home-icon'onClick={() => this.changeSelected("home","/dashboard")}/>
                         </NavIcon>
                         <NavText>
                             Home
@@ -43,8 +59,8 @@ export default class SidebarComponent extends Component{
                                 Amigos adicionados
                             </NavText>
                         </NavItem>
-                        <NavItem eventKey="friends/busca" navitemStyle={{color:'#6b6b6b'}} >
-                            <NavText>
+                        <NavItem eventKey="friends/busca" navitemStyle={{color:'#6b6b6b'}} onClick={() => this.changeSelected("friends","/addfriends")} >
+                            <NavText >
                                 Buscar amigos
                             </NavText>
                         </NavItem>

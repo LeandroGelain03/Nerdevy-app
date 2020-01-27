@@ -33,7 +33,8 @@ class loginPage extends Component{
         await Axios.post('http://localhost:3333/user/login', this.state)
         .then((response) => {
             localStorage.setItem('Token', response.data['token']);
-            localStorage.setItem('Email', response.data['email'])
+            localStorage.setItem('Email', response.data['email']);
+            localStorage.setItem("porfilePicture", response.data['img'])
             this.context.getUser([response.data.token,response.data.email]);
             this.props.history.push(`/dashboard/`)
         }).catch((err) => {
