@@ -43,7 +43,7 @@ export default class SidebarComponent extends Component{
                                 Amigos adicionados
                             </NavText>
                         </NavItem>
-                        <NavItem eventKey="friends/busca" navitemStyle={{color:'#6b6b6b'}}>
+                        <NavItem eventKey="friends/busca" navitemStyle={{color:'#6b6b6b'}} >
                             <NavText>
                                 Buscar amigos
                             </NavText>

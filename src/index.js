@@ -2,11 +2,15 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
 import './index.css';
+
 import LoginPage from './pages/loginPage';
 import SignUpPage from './pages/signUpPage';
 import DashboardPage from './pages/DashboardPage';
 import CardsPage from './pages/cardsPage';
+import addFriends from './pages/addFriendsPage';
+
 import * as serviceWorker from './serviceWorker';
+
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const PrivateRoute = ({ component: Component, ...rest }) => (
@@ -24,6 +28,7 @@ ReactDOM.render(
             <Route path="/signup/" exact component={SignUpPage} />
             <PrivateRoute path="/dashboard/" exact component={DashboardPage} />
             <PrivateRoute path="/dashboard/allCards/"  component={CardsPage} />
+            <PrivateRoute path="/addFriends" component={addFriends}/>
         </Switch>
     </ BrowserRouter>
     , document.getElementById('root')
