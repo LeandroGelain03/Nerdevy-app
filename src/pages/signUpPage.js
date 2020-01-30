@@ -50,7 +50,7 @@ class signUpPage extends Component {
             "pwd":this.state.pwd,
             "category":this.state.category,
             "institution":this.state.instituition,
-            "age":String( this.state.date_birth.getDate()) +'/'+String(this.state.date_birth.getMonth()+1)+'/'+String(this.state.date_birth.getFullYear()),
+            "born_date":String( this.state.date_birth.getDate()) +'/'+String(this.state.date_birth.getMonth()+1)+'/'+String(this.state.date_birth.getFullYear()),
             "city":this.state.city,
             "state":this.state.state,
             "country":this.state.country, }

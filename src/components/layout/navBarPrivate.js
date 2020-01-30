@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Navbar, Dropdown } from 'react-bootstrap';
 import '../../styles/loginPage.css';
 import Axios from 'axios'
+import { withRouter } from 'react-router';
 class NavBar_component extends Component {
 
     constructor(props){
@@ -21,7 +22,10 @@ class NavBar_component extends Component {
                 }
             })
         }
-    
+    handleClick = () =>{
+        this.props.history.push("/profile/view");
+    }
+
     componentDidMount() {
         this.getProfilePicture()
     }
@@ -41,7 +45,7 @@ class NavBar_component extends Component {
                         <div className={'profileIconStyle'}>
                             <Dropdown drop="left">
                                 <Dropdown.Toggle className={'buttonDropdown'}></Dropdown.Toggle>
-                                <img src={this.state.profilePicture} width="40vw" alt="profile" href="/profile/edit"/>
+                                    <img onClick={this.handleClick} src={this.state.profilePicture} width="40vw" alt="profile"/>
                                 <Dropdown.Menu>
                                     <Dropdown.Item href="/profile/edit">Editar Perfil</Dropdown.Item>
                                 </Dropdown.Menu>
@@ -54,4 +58,4 @@ class NavBar_component extends Component {
     }
 }
 
-export default NavBar_component;
+export default withRouter(NavBar_component);

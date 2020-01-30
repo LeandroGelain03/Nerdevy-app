@@ -25,3 +25,10 @@
 .imgStyle img{
     position: absolute;
 }
+.infoContainer {
+    margin-top: 20px;
+}
+.textStyleUsername{
+    font-size: 18px;
+    font-weight: bolder;
+}

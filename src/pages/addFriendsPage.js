@@ -5,6 +5,7 @@ import SidebarComponent from '../components/layout/sidebarComponent';
 import { Container ,Row, Col } from 'react-bootstrap';
 import Axios from 'axios';
 import Columns from 'react-columns';
+import "react-datepicker/dist/react-datepicker.css";
 import '../styles/Friend.css';
 
 class CardPage extends Component {
@@ -38,9 +39,12 @@ class CardPage extends Component {
                                 <Col md="auto">
                                     <img src={require('../img/green1.jpg')} className={'imgStyle'} alt=''/>
                                 </Col>
-                                <Col>
-                                    <p className={'textStyle'}>
+                                <Col className={"infoContainer"}>
+                                    <p className={'textStyleUsername'}>
                                         { user.username }
+                                    </p>
+                                    <p className={"textStyle"}>
+                                        { user.bio }
                                     </p>
                                     <p className={'textStyle'}>
                                         { user.email }

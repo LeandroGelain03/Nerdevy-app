@@ -18,7 +18,6 @@ export default class SidebarComponent extends Component{
             localStorage.setItem("Selected","home")
         }  return localStorage.getItem("Selected")
     }
-
     logout = () =>{
         localStorage.clear()
         console.log('clear localstorage')
