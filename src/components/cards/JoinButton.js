@@ -22,7 +22,8 @@ class JoinButton extends Component {
         }
         if (response.data.message === "Membro inserido."){
             notify.show('Você ingressou no card!',"success",1000);
-        } 
+            window.location.reload() 
+        }
     }
     render() {
         return(

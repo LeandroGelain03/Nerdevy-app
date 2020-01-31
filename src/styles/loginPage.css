@@ -71,3 +71,7 @@
 .profileIconStyle{
     margin-left: 64vw;
 }
+.profileImageStyleClickable{
+    cursor: pointer;
+    width:40px
+}

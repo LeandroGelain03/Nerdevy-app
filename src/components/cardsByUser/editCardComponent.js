@@ -1,66 +1,56 @@
 import React, { Component } from 'react';
 import '../../styles/AddCards.css';
-import Modal from 'react-responsive-modal'
-import {Form, Col, Button } from 'react-bootstrap'
+import Modal from 'react-responsive-modal';
 import Axios from 'axios';
-class AddCard extends Component { 
+import {Form, Col, Button } from 'react-bootstrap'
+
+class EditCard extends Component { 
     
     constructor(props) {
         super(props);
         this.state = {
-            open: false,
-            email:localStorage.getItem('Email'),
-            title_card:'',
-            points:"10",
-            description:'',
-            category:'',
-            username: localStorage.getItem('Username')
+            open2:false,
+            details: this.props.children,
+            title_card:this.props.children.title,
+            points:this.props.children.points,
+            description:this.props.children.description,
+            category:this.props.children.category,
+            members:[]
         };
         this.handleChanges = this.handleChanges.bind(this);
     };
-
+    async updateCard() {
+        await Axios({
+            method:"POST",
+            url:'http://localhost:3333/card/update',
+            data: {
+                idCard: this.props.children._id,
+                email : localStorage.getItem('Email'),
+                category: this.state.category,
+                title: this.state.title_card,
+                description: this.state.description,
+                points: this.state.points,
+                members:[]
+            }
+        })
+        window.location.reload()  
+    }
+    onOpenModal = () => {
+        this.setState({ open2:true });
+    };
+    onCloseModal = () => {
+        this.setState({ open2:false });
+    }
     handleChanges(event){
         let data = {};
         data[event.target.name] = event.target.value;
         this.setState(data);
     };
-     async handleSubmit(event){
-        await Axios({
-            method:"POST",
-            url:'http://localhost:3333/card/add',
-            data: {
-                email: this.state.email,
-                category: this.state.category,
-                title: this.state.title_card,
-                description: this.state.description,
-                points: this.state.points,
-                username: this.state.username
-            }
-        })
-        .then(
-            (response)=>{console.log(response)},
-            (error)=>{console.log(error)}
-        );
-        this.setState({open:false})
-        window.location.reload()
-    }
-
-    onOpenModal = () => {
-        this.setState({ open:true });
-    };
-    onCloseModal = () => {
-        this.setState({ open:false });
-    }
-
     render() {
         return (
             <div>
-                <div  onClick={this.onOpenModal} className={'backgroundColor'}>
-                    <div className={'contentCardAdd'}>
-                        <p>Adicionar card</p>
-                    </div>
-                </div>
-                <Modal open={this.state.open} 
+                <Button variant="dark" onClick={this.onOpenModal}>editar</Button>
+                <Modal open={this.state.open2} 
                        onClose={this.onCloseModal}
                        center 
                        classNames={{modal:"modal-content"}}
@@ -71,20 +61,20 @@ class AddCard extends Component {
                             <Form.Row>
                                 <Form.Group>
                                     <Form.Label className={'labelForm'}>Titulo do Card</Form.Label>
-                                    <Form.Control onChange={this.handleChanges} name="title_card"></Form.Control>
+                                    <Form.Control onChange={this.handleChanges} name="title_card" defaultValue={this.props.children.title}></Form.Control>
                                 </Form.Group>
                             </Form.Row>
                             <Form.Row>
                                 <Col>
                                     <Form.Group>
                                         <Form.Label className={'labelForm'}>Categoria</Form.Label>
-                                        <Form.Control onChange={this.handleChanges} name="category"></Form.Control>
+                                        <Form.Control onChange={this.handleChanges} name="category" defaultValue={this.props.children.category}></Form.Control>
                                     </Form.Group>
                                 </Col>
                                 <Col>
                                     <Form.Group>
                                         <Form.Label className={'labelForm'}>Pontos por dificuldade</Form.Label>
-                                        <Form.Control as='select' onChange={this.handleChanges} name="points">
+                                        <Form.Control as='select' onChange={this.handleChanges} name="points" defaultValue={this.props.children.points}>
                                             <option>10</option>
                                             <option>20</option>
                                             <option>30</option>
@@ -106,12 +96,13 @@ class AddCard extends Component {
                                                   as="textarea" 
                                                   className={'descriptionSize'} 
                                                   rows="5" name="description"
+                                                  defaultValue={this.props.children.description}
                                                   />
                                 </Form.Group>
                             </Form.Row>
                         </Form>
                         <div className={'buttonContainer'}>
-                            <Button variant="secondary" type='submit' onClick={() => this.handleSubmit()}>Salvar</Button>
+                            <Button variant="secondary" type='submit' onClick={()=>this.updateCard()}>Salvar</Button>
                         </div>
                     </div>
                 </Modal>
@@ -123,7 +114,7 @@ const styles = {
     modalStyles: {
         modal: {
             borderRadius: "10px",
-            width: "60%",
+            width: "90%",
             height: "75%",
         },
         closeButton: {
@@ -135,5 +126,4 @@ const styles = {
         }
     }
 }
-
-export default AddCard;
+export default EditCard;

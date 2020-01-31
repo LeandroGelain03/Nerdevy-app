@@ -45,9 +45,9 @@ class NavBar_component extends Component {
                         <div className={'profileIconStyle'}>
                             <Dropdown drop="left">
                                 <Dropdown.Toggle className={'buttonDropdown'}></Dropdown.Toggle>
-                                    <img onClick={this.handleClick} src={this.state.profilePicture} width="40vw" alt="profile"/>
+                                    <img onClick={this.handleClick} src={this.state.profilePicture} className={"profileImageStyleClickable"} alt="profile"/>
                                 <Dropdown.Menu>
-                                    <Dropdown.Item href="/profile/edit">Editar Perfil</Dropdown.Item>
+                                    <Dropdown.Item href="/profile/edit" >Editar Perfil</Dropdown.Item>
                                 </Dropdown.Menu>
                             </Dropdown>
                         </div>

@@ -34,7 +34,8 @@ class loginPage extends Component{
         .then((response) => {
             localStorage.setItem('Token', response.data['token']);
             localStorage.setItem('Email', response.data['email']);
-            localStorage.setItem("porfilePicture", response.data['img'])
+            localStorage.setItem('Username', response.data['username']);
+            localStorage.setItem("profilePicture", response.data['img'])
             this.context.getUser([response.data.token,response.data.email]);
             this.props.history.push(`/dashboard/`)
         }).catch((err) => {

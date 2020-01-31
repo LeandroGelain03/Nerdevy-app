@@ -8,6 +8,8 @@
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
 
+    box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.884);
+
     margin-right: 2vw ;
     align-items: center;
     display: flex;

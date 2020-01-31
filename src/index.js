@@ -10,6 +10,7 @@ import CardsPage from './pages/cardsPage';
 import addFriends from './pages/addFriendsPage';
 import EditProfilePage from './pages/editProfilePage';
 import ProfilePage from './pages/ViewProfilePage';
+import CardsPageMember from './pages/cardsByMemberPage';
 
 import * as serviceWorker from './serviceWorker';
 
@@ -30,6 +31,7 @@ ReactDOM.render(
             <Route path="/signup/" exact component={SignUpPage} />
             <PrivateRoute path="/dashboard/" exact component={DashboardPage} />
             <PrivateRoute path="/dashboard/allCards/"  component={CardsPage} />
+            <PrivateRoute path="/dashboard/YourCards/" component={CardsPageMember} />
             <PrivateRoute path="/addFriends" component={addFriends}/>
             <PrivateRoute path="/profile/view/" component={ProfilePage}/>
             <PrivateRoute path="/profile/edit/" component={EditProfilePage}/>
