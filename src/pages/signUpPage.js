@@ -19,7 +19,7 @@ class signUpPage extends Component {
             username:'',
             category:'',
             instituition:'',
-            date_birth :new Date(),
+            born_date :new Date(),
             city:'',
             state:'',
             country:'',
@@ -50,7 +50,7 @@ class signUpPage extends Component {
             "pwd":this.state.pwd,
             "category":this.state.category,
             "institution":this.state.instituition,
-            "born_date":String( this.state.date_birth.getDate()) +'/'+String(this.state.date_birth.getMonth()+1)+'/'+String(this.state.date_birth.getFullYear()),
+            "born_date":String( this.state.born_date.getDate()) +'/'+String(this.state.born_date.getMonth()+1)+'/'+String(this.state.born_date.getFullYear()),
             "city":this.state.city,
             "state":this.state.state,
             "country":this.state.country, }
@@ -152,7 +152,7 @@ class signUpPage extends Component {
                                     <div className={'calendar_style'}>
                                         <Form.Group>
                                             <Form.Label className={'text_color_dark'}>Data de Nascimento</Form.Label><br/>
-                                            <DatePicker dateFormat='dd/mm/yyyy' selected={this.state.date_birth} onChange={(date) => {this.handleChangeCalendar(date, 'date_birth')}} className={'calendar_block'}/>
+                                            <DatePicker dateFormat='dd/mm/yyyy' selected={this.state.born_date} onChange={(date) => {this.handleChangeCalendar(date, 'born_date')}} className={'calendar_block'}/>
                                         </Form.Group>
                                     </div>
                                 </Col>

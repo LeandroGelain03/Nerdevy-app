@@ -12,23 +12,22 @@ import "react-datepicker/dist/react-datepicker.css";
 class EditProfilePage extends Component {
     constructor(props){
         super(props);
-        this.getData();
         this.state = {
             oldData: [],
             imageSelected: null,
-            first_name: this.state.oldData.first_name,
-            last_name:this.state.oldData.last_name,
-            email:this.state.oldData.email,
-            username:this.state.oldData.username,
-            category:this.state.oldData.category,
-            instituition:this.state.oldData.institution,
-            date_birth :this.state.oldData.born_date,
-            city:this.state.oldData.city,
-            state:this.state.oldData.state,
-            country:this.state.oldData.country,
-            pwd:''
+            first_name: "",
+            last_name:"",
+            email:"",
+            username:"",
+            category:"",
+            instituition:"",
+            born_date: "",
+            city:"",
+            state:"",
+            country:"",
+            pwd:'',
         };
-        console.log(this.state.oldData.email)
+
         this.handleChange = this.handleChange.bind(this);
         this.handleChangeCalendar = this.handleChangeCalendar.bind(this)
     }
@@ -38,7 +37,20 @@ class EditProfilePage extends Component {
             url:"http://localhost:3333/user/view",
             data: {"email":localStorage.getItem("Email")}
         }).then((response)=>{
-            this.setState({oldData:response.data})
+            this.setState({
+                oldData: response.data,
+                email:response.data["email"],
+                username:response.data["username"],
+                first_name: response.data["first_name"],
+                last_name: response.data["last_name"],
+                category:response.data["category"],
+                instituition:response.data["institution"],
+                city:response.data["city"],
+                state:response.data["state"],
+                country:response.data["country"],
+                born_date: new Date(response.data["born_date"])
+            })
+            console.log(this.state)
         })
     }
     async postEdit() {
@@ -50,20 +62,16 @@ class EditProfilePage extends Component {
             "pwd":this.state.pwd,
             "category":this.state.category,
             "institution":this.state.instituition,
-            "born_date":String( this.state.born_date.getDate()) +'/'+String(this.state.born_date.getMonth()+1)+'/'+String(this.state.born_date.getFullYear()),
+            "born_date":this.state.born_date,
             "city":this.state.city,
             "state":this.state.state,
             "country":this.state.country, }
         )
         .then (response => {
             console.log(response);
-                localStorage.setItem('Token', response.data['token']);
-                this.context.getUser(response.data.token);
-                this.props.history.push(`/dashboard/`)
         })
         .catch(error => {
             console.log(error.response)
-            alert('Email já cadastrado')
         })
 
     }
@@ -158,7 +166,8 @@ class EditProfilePage extends Component {
                                         <div className={'calendar_style'}>
                                             <Form.Group>
                                                 <Form.Label className={'text_color_dark'}>Data de Nascimento</Form.Label><br/>
-                                                <DatePicker dateFormat='DD/MM/YYYY' selected={this.state.date_birth} onChange={(date) => {this.handleChangeCalendar(date, 'date_birth')}} className={'calendar_block'}/>
+                                                <DatePicker dateFormat='dd/MM/yyyy' selected={this.state.born_date} onChange={(date) => {this.handleChangeCalendar(date, 'born_date')}} className={'calendar_block'}/>
+
                                             </Form.Group>
                                         </div>
                                     </Col>
@@ -179,7 +188,7 @@ class EditProfilePage extends Component {
                                     </Col>
                                 </Form.Row>
                                 <div className={'btn_signUp'}>
-                                    <LinkContainer to='/home'>
+                                    <LinkContainer to='/profile/view'>
                                         <Button variant="light" type='submit' onClick={() => this.postEdit()}>
                                             Salvar
                                         </Button>
