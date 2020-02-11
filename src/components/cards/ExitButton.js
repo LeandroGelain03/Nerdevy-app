@@ -13,12 +13,13 @@ class ExitButton extends Component {
             method:"POST",
             url: "http://localhost:3333/card/removeMember",
             data:{
-                idCard:this.props.children._id,
-                email:localStorage.getItem('Email')
+                idCard:this.props.children.idCard,
+                username:localStorage.getItem('Username')
             }
         })
         if (response.data.message === "Membro removido."){
-            notify.show('Você saiu do card!',"error",2000);
+            await notify.show('Você saiu do card!',"error",2000);
+            window.location.reload()
         } 
         if (response.data.message === "Membro não estava no card."){
             notify.show('Você não está participando do card!',"error",2000);

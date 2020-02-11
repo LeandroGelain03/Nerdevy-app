@@ -53,7 +53,8 @@ class signUpPage extends Component {
             "born_date":String( this.state.born_date.getDate()) +'/'+String(this.state.born_date.getMonth()+1)+'/'+String(this.state.born_date.getFullYear()),
             "city":this.state.city,
             "state":this.state.state,
-            "country":this.state.country, }
+            "country":this.state.country,
+            "points_user":0 }
         )
         .then (response => {
             console.log(response);

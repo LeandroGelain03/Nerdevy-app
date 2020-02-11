@@ -13,8 +13,8 @@ class ExitButton extends Component {
             method:"POST",
             url: "http://localhost:3333/card/removeMember",
             data:{
-                idCard:this.props.children._id,
-                email:localStorage.getItem('Email')
+                idCard:this.props.children.idCard,
+                username:localStorage.getItem('Username')
             }
         })
         if (response.data.message === "Membro removido."){

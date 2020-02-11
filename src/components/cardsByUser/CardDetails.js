@@ -23,7 +23,7 @@ export default class CardDetails extends Component{
         await Axios({
             method: 'POST',
             url: 'http://localhost:3333/card/findById',
-            data: { idCard: this.props.children._id }
+            data: { idCard: this.props.children.idCard }
         }).then((response) => {
             this.setState({
                 details: response.data

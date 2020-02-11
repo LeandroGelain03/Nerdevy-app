@@ -26,7 +26,7 @@ class CardPage extends Component {
         await Axios({
             method : "POST",
             url: "http://localhost:3333/card/findByMember",
-            data: { email: localStorage.getItem("Email")},
+            data: { username: localStorage.getItem("Username")},
         }).then((response) => {
             this.setState({
                 card: response.data

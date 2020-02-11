@@ -9,7 +9,6 @@ class AddCard extends Component {
         super(props);
         this.state = {
             open: false,
-            email:localStorage.getItem('Email'),
             title_card:'',
             points:"10",
             description:'',
@@ -26,17 +25,19 @@ class AddCard extends Component {
     };
      async handleSubmit(event){
         await Axios({
+            headers: {
+                'Access-Control-Allow-Origin':'*'
+            },
             method:"POST",
             url:'http://localhost:3333/card/add',
             data: {
-                email: this.state.email,
+                username: this.state.username,
                 category: this.state.category,
                 title: this.state.title_card,
                 description: this.state.description,
-                points: this.state.points,
-                username: this.state.username
+                points: parseInt(this.state.points)
             }
-        })
+         })
         .then(
             (response)=>{console.log(response)},
             (error)=>{console.log(error)}

@@ -13,15 +13,16 @@ class JoinButton extends Component {
             method:"POST",
             url: "http://localhost:3333/card/insertMember",
             data:{
-                idCard:this.props.children._id,
-                email:localStorage.getItem('Email')
+                idCard:this.props.children.idCard,
+                username:localStorage.getItem('Username')
             }
         })
+        console.log(response)
         if (response.data.message ==="Usuario já faz parte do card.") {
             notify.show('Você já faz parte do card!',"warning",1000);
         }
         if (response.data.message === "Membro inserido."){
-            notify.show('Você ingressou no card!',"success",1000);
+            notify.show('Você ingressou no card!',"success",10000);
             window.location.reload() 
         }
     }

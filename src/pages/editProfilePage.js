@@ -35,23 +35,24 @@ class EditProfilePage extends Component {
         await Axios({
             method:"POST",
             url:"http://localhost:3333/user/view",
-            data: {"email":localStorage.getItem("Email")}
+            data: {username:localStorage.getItem("Username")}
         }).then((response)=>{
+            console.log(response.data)
             this.setState({
-                oldData: response.data,
-                email:response.data["email"],
-                username:response.data["username"],
-                first_name: response.data["first_name"],
-                last_name: response.data["last_name"],
-                category:response.data["category"],
-                instituition:response.data["institution"],
-                city:response.data["city"],
-                state:response.data["state"],
-                country:response.data["country"],
-                born_date: new Date(response.data["born_date"])
+                oldData: response.data[0],
+                email:response.data[0]["email"],
+                username:response.data[0]["username"],
+                first_name: response.data[0]["first_name"],
+                last_name: response.data[0]["last_name"],
+                category:response.data[0]["category"],
+                instituition:response.data[0]["institution"],
+                city:response.data[0]["city"],
+                state:response.data[0]["state"],
+                country:response.data[0]["country"],
+                born_date: new Date(response.data[0]["born_date"])
             })
-            console.log(this.state)
         })
+        console.log(this.state)
     }
     async postEdit() {
         await axios.post('http://localhost:3333/user/edit', 

@@ -24,7 +24,7 @@ class EditCard extends Component {
             method:"POST",
             url:'http://localhost:3333/card/update',
             data: {
-                idCard: this.props.children._id,
+                idCard: this.props.children.idCard,
                 email : localStorage.getItem('Email'),
                 category: this.state.category,
                 title: this.state.title_card,

@@ -17,7 +17,7 @@ class DeleteCard extends Component {
             method:"POST",
             url:'http://localhost:3333/card/delete',
             data: {
-                idCard: this.props.children
+                idCard: this.props.children.idCard
             }
         })
         window.location.reload()  

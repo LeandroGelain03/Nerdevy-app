@@ -15,7 +15,7 @@ class NavBar_component extends Component {
         Axios({
             method: "POST",
             ulr: "http://localhost:3333/user/view",
-            data : {"email": localStorage.getItem("Email")}
+            data : {username: localStorage.getItem("Username")}
         }).then((response) => {
             if(response.data.img){
                 this.setState({profilePicture: response.data.img})

@@ -20,7 +20,7 @@ class AddCard extends Component {
         await Axios({
             method: 'POST',
             url: 'http://localhost:3333/card/findByMember',
-            data: { email : localStorage.getItem("Email")},
+            data: { username : localStorage.getItem("Username")},
             headers: { "Access-Control-Allow-Origin": "*", }
         }).then((response) => {
             this.setState({
